@@ -5,22 +5,51 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  styled,
   Typography,
 } from '@mui/material';
+import styled from 'styled-components';
 
 const ProductItem = () => {
   return (
     <ProductCard>
       <CardMedia sx={{ height: 140 }} image="https://placehold.co/600x400.jpg" />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Apple Watch Series 4 GPS
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+      <StyledCardContent>
+        <CardHeader>
+          <Typography
+            sx={{
+              color: '#2C2C2C',
+              fontFamily: 'Montserrat',
+              fontSize: 16,
+            }}
+          >
+            Apple Watch Ultima Geracao
+          </Typography>
+          <CardPrice>
+            <Typography
+              sx={{
+                color: '#FFF',
+                fontFamily: 'Montserrat',
+                fontSize: 15,
+                lineHeight: '15px',
+                whiteSpace: 'nowrap',
+                fontWeight: 700,
+              }}
+            >
+              R$ 1.999
+            </Typography>
+          </CardPrice>
+        </CardHeader>
+        <Typography
+          sx={{
+            color: '#2C2C2C',
+            fontFamily: 'Montserrat',
+            fontSize: 10,
+            fontWeight: 300,
+          }}
+        >
           Redesigned from scratch and completely revised.
         </Typography>
-      </CardContent>
+      </StyledCardContent>
       <BuyActions>
         <BuyButton startIcon={<Icon icon="icon-park-outline:mall-bag" />}>
           Comprar
@@ -32,13 +61,48 @@ const ProductItem = () => {
 
 const ProductCard = styled(Card)(() => ({
   borderRadius: '8px !important',
+  maxWidth: '280px !important',
+  height: '320px !important',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+}));
+
+const StyledCardContent = styled(CardContent)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  padding: '16px !important',
+  flexGrow: 1,
+}));
+
+const CardHeader = styled.div(() => ({
+  display: 'flex',
+  width: '100%',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'flex-start',
+  marginBottom: '12px',
+}));
+
+const CardPrice = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#373737',
+  borderRadius: '8px',
+  padding: '4px 8px',
+  marginLeft: '8px',
 }));
 
 const BuyActions = styled(CardActions)(() => ({
   display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'flex-end',
+  alignItems: 'flex-end',
   padding: '0 !important',
+  height: 'auto !important',
 }));
 
 const BuyButton = styled(Button)(() => ({

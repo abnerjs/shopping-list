@@ -44,7 +44,12 @@ const MainContainer = styled.div(() => ({
   backgroundColor: 'var(--bg-primary)',
   width: '100vw',
   height: '100vh',
-  overflow: 'hidden',
+  overflowX: 'hidden',
+  overflowY: 'scroll',
+  '&::-webkit-scrollbar': {
+    width: '0 !important',
+    backgroundColor: 'transparent !important',
+  },
 }));
 
 const ProductsGrid = styled(Grid)(() => ({
