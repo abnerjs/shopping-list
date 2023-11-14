@@ -1,0 +1,24 @@
+.navbar {
+    height: 72px;
+    width: 100%;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar .navbar-brand, .navbar .actions {
+    margin: 0 40px;
+  }
+
+  .navbar .title {
+    font-weight: 600;
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 4px;
+  }
+
+  .navbar .subtitle {
+    font-weight: 300;
+    color: white;
+  }
