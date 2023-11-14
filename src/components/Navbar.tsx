@@ -7,9 +7,10 @@ type Props = {
   title: string;
   productsCount: number;
   subtitle: string;
+  setDrawerOpened: (value: boolean) => void;
 };
 
-const Navbar = ({ title, subtitle, productsCount }: Props) => {
+const Navbar = ({ title, subtitle, productsCount, setDrawerOpened }: Props) => {
   return (
     <NavbarContainer>
       <div className="navbar-brand">
@@ -17,7 +18,11 @@ const Navbar = ({ title, subtitle, productsCount }: Props) => {
         <NavbarSubtitle>{subtitle}</NavbarSubtitle>
       </div>
       <div className="actions">
-        <CartButton startIcon={<Icon icon="fluent:cart-24-filled" />} color="primary">
+        <CartButton
+          startIcon={<Icon icon="fluent:cart-24-filled" />}
+          color="primary"
+          onClick={() => setDrawerOpened(true)}
+        >
           {productsCount}
         </CartButton>
       </div>

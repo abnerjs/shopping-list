@@ -1,16 +1,25 @@
 import './App.css';
 
 import { Grid } from '@mui/material';
+import { useState } from 'react';
 import styled from 'styled-components';
 
+import ProductDrawer from './components/Drawer/ProductDrawer';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ProductItem from './components/ProductItem';
 
 function App() {
+  const [drawerOpened, setDrawerOpened] = useState(false);
+
   return (
     <MainContainer>
-      <Navbar title="MKS" subtitle="Sistemas" productsCount={10} />
+      <Navbar
+        title="MKS"
+        subtitle="Sistemas"
+        setDrawerOpened={setDrawerOpened}
+        productsCount={10}
+      />
 
       <ProductsGrid container>
         {Array.from(Array(8).keys()).map((item) => (
@@ -19,6 +28,8 @@ function App() {
           </ItemGrid>
         ))}
       </ProductsGrid>
+
+      <ProductDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
 
       <Footer />
     </MainContainer>
