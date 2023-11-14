@@ -2,6 +2,9 @@ import { Icon } from '@iconify/react';
 import { Drawer, IconButton } from '@mui/material';
 import styled from 'styled-components';
 
+import ProductBuyButton from './subcomponents/ProductBuyButton';
+import ProductItemDrawer from './subcomponents/ProductItemDrawer';
+
 type Props = {
   drawerOpened: boolean;
   setDrawerOpened: (value: boolean) => void;
@@ -25,15 +28,28 @@ const ProductDrawer = ({ drawerOpened, setDrawerOpened }: Props) => {
           <Icon icon="fluent:dismiss-12-regular" color="#FFF" width={24} height={24} />
         </CloseDrawerButton>
       </ProductDrawerHeader>
+
+      <ProductDrawerItemList>
+        <ProductItemDrawer />
+        <ProductItemDrawer />
+      </ProductDrawerItemList>
+
+      <ProductsTotalPrice>
+        <span>Total</span>
+        <span>R$20,00</span>
+      </ProductsTotalPrice>
+
+      <ProductBuyButton>Finalizar compra</ProductBuyButton>
     </ProductDrawerStyled>
   );
 };
 
 const ProductDrawerStyled = styled(Drawer)(() => ({
-  width: '400px !important',
+  width: '480px !important',
   '& .MuiDrawer-paper': {
-    width: '400px !important',
+    width: '480px !important',
     backgroundColor: 'var(--primary) !important',
+    overflow: 'hidden !important',
   },
 }));
 
@@ -42,7 +58,7 @@ const ProductDrawerHeader = styled.div(() => ({
   flexDirection: 'row',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
-  padding: '16px 16px 48px 40px',
+  padding: '16px 16px 32px 40px',
 }));
 
 const ProductDrawerTitle = styled.h2(() => ({
@@ -51,6 +67,29 @@ const ProductDrawerTitle = styled.h2(() => ({
   fontWeight: 700,
   color: '#FFF',
   margin: '0',
+}));
+
+const ProductDrawerItemList = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  padding: '8px 32px',
+  overflowY: 'auto',
+}));
+
+const ProductsTotalPrice = styled.div(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  width: 'calc(100% - 64px)',
+  padding: '8px 32px',
+  marginTop: 'auto',
+  marginBottom: '12px',
+  color: '#FFF',
+  fontWeight: 700,
+  fontSize: '1.2rem',
 }));
 
 const CloseDrawerButton = styled(IconButton)(() => ({
