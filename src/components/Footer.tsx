@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+const Footer = () => {
+  return (
+    <FooterDiv>
+      <span>MKS sistemas © Todos os direitos reservados</span>
+    </FooterDiv>
+  );
+};
+
 const FooterDiv = styled.footer(() => ({
   width: '100%',
   height: '32px',
@@ -12,13 +20,5 @@ const FooterDiv = styled.footer(() => ({
   position: 'absolute',
   bottom: 0,
 }));
-
-const Footer = () => {
-  return (
-    <FooterDiv>
-      <span>MKS sistemas © Todos os direitos reservados</span>
-    </FooterDiv>
-  );
-};
 
 export default Footer;
