@@ -17,7 +17,7 @@ const FooterDiv = styled.footer(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '12px',
-  position: 'absolute',
+  position: 'fixed',
   bottom: 0,
 }));
 
