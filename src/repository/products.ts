@@ -26,4 +26,13 @@ API_URL.interceptors.request.use(
   },
 );
 
+export const getProducts = async () => {
+  try {
+    const response = await API_URL.get('/products');
+    return response.data;
+  } catch (error) {
+    throw new Error('GET: API Product error');
+  }
+};
+
 export default API_URL;
