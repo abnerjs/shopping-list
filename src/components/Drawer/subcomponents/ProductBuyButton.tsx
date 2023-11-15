@@ -1,8 +1,9 @@
 import { Button, ButtonProps, styled } from '@mui/material';
+import React from 'react';
 
-const ProductBuyButton = ({ children }: ButtonProps) => {
+const ProductBuyButton = ({ children, onClick }: ButtonProps) => {
   return (
-    <ProductBuyButtonStyled variant="contained" fullWidth>
+    <ProductBuyButtonStyled onClick={onClick} variant="contained" fullWidth>
       {children}
     </ProductBuyButtonStyled>
   );

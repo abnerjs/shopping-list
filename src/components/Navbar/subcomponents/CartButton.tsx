@@ -12,6 +12,7 @@ const CartButtonWithoutBadge = styled(Button)<ButtonProps>(() => ({
   boxShadow: 'none',
   backgroundColor: '#FFF',
   color: '#000',
+  fontFamily: 'Montserrat, sans-serif',
   fontWeight: 700,
   borderRadius: 8,
   padding: '0.3rem 1rem',

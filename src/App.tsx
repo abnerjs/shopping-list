@@ -8,13 +8,15 @@ import ProductDrawer from './components/Drawer/ProductDrawer';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar/Navbar';
 import ProductItem from './components/ProductItem';
-import { ProductList } from './model/product';
+import { CartItem } from './model/CartItem';
+import { Product, ProductList } from './model/product';
 import API_URL from './repository/products';
 
 function App() {
   const [drawerOpened, setDrawerOpened] = useState(false);
-  const [products, setProducts] = useState<ProductList | null>(null);
+  const [products, setProducts] = useState<ProductList>();
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useState<Array<CartItem>>([]);
 
   useEffect(() => {
     setLoading(true);
@@ -24,20 +26,37 @@ function App() {
     });
   }, []);
 
+  const addToCartHandler = (value: Product) => {
+    const itemIndex = cart.findIndex((cartItem) => cartItem.product.id === value.id);
+    if (itemIndex !== -1) {
+      const newCart = cart;
+      newCart[itemIndex].quantity += 1;
+      setCart([...newCart]);
+    } else {
+      setCart([
+        ...cart,
+        {
+          product: value,
+          quantity: 1,
+        },
+      ]);
+    }
+  };
+
   return (
     <MainContainer>
       <Navbar
         title="MKS"
         subtitle="Sistemas"
         setDrawerOpened={setDrawerOpened}
-        productsCount={10}
+        productsCount={cart?.length}
       />
 
       <ProductsGrid container>
         {!loading &&
           products?.products.map((item) => (
             <ItemGrid item xs={3} key={item.id}>
-              <ProductItem item={item} />
+              <ProductItem onBuy={addToCartHandler} item={item} />
             </ItemGrid>
           ))}
         {loading &&
@@ -53,7 +72,12 @@ function App() {
           ))}
       </ProductsGrid>
 
-      <ProductDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
+      <ProductDrawer
+        drawerOpened={drawerOpened}
+        setDrawerOpened={setDrawerOpened}
+        cart={cart}
+        setCart={setCart}
+      />
 
       <Footer />
     </MainContainer>

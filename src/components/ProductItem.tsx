@@ -13,12 +13,16 @@ import { Product } from '../model/product';
 
 type Props = {
   item: Product;
+  onBuy: (value: Product) => void;
 };
 
-const ProductItem = ({ item }: Props) => {
+const ProductItem = ({ item, onBuy }: Props) => {
   return (
     <ProductCard>
-      <CardMedia sx={{ height: 180 }} image={item.photo} />
+      <CardMedia
+        sx={{ height: 300, backgroundSize: 'contain !important' }}
+        image={item.photo}
+      />
       <StyledCardContent>
         <CardHeader>
           <Typography
@@ -53,11 +57,14 @@ const ProductItem = ({ item }: Props) => {
             fontWeight: 300,
           }}
         >
-          Redesigned from scratch and completely revised.
+          {item.description}
         </Typography>
       </StyledCardContent>
       <BuyActions>
-        <BuyButton startIcon={<Icon icon="icon-park-outline:mall-bag" />}>
+        <BuyButton
+          onClick={() => onBuy(item)}
+          startIcon={<Icon icon="icon-park-outline:mall-bag" />}
+        >
           Comprar
         </BuyButton>
       </BuyActions>

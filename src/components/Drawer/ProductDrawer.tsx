@@ -2,15 +2,18 @@ import { Icon } from '@iconify/react';
 import { Drawer, IconButton } from '@mui/material';
 import styled from 'styled-components';
 
+import { CartItem } from '../../model/CartItem';
 import ProductBuyButton from './subcomponents/ProductBuyButton';
 import ProductItemDrawer from './subcomponents/ProductItemDrawer';
 
 type Props = {
   drawerOpened: boolean;
   setDrawerOpened: (value: boolean) => void;
+  cart: Array<CartItem>;
+  setCart: (value: Array<CartItem>) => void;
 };
 
-const ProductDrawer = ({ drawerOpened, setDrawerOpened }: Props) => {
+const ProductDrawer = ({ drawerOpened, setDrawerOpened, cart, setCart }: Props) => {
   return (
     <ProductDrawerStyled
       anchor="right"
@@ -30,16 +33,34 @@ const ProductDrawer = ({ drawerOpened, setDrawerOpened }: Props) => {
       </ProductDrawerHeader>
 
       <ProductDrawerItemList>
-        <ProductItemDrawer />
-        <ProductItemDrawer />
+        {cart.map((item) => (
+          <ProductItemDrawer
+            cart={cart}
+            setCart={setCart}
+            item={item}
+            key={item.product.id}
+          />
+        ))}
       </ProductDrawerItemList>
 
       <ProductsTotalPrice>
         <span>Total</span>
-        <span>R$20,00</span>
+        <span>
+          {`R$ ${cart.reduce(
+            (acc, item) => acc + Number.parseFloat(item.product.price) * item.quantity,
+            0,
+          )}`}
+        </span>
       </ProductsTotalPrice>
 
-      <ProductBuyButton>Finalizar compra</ProductBuyButton>
+      <ProductBuyButton
+        onClick={() => {
+          setCart([]);
+          setDrawerOpened(false);
+        }}
+      >
+        Finalizar compra
+      </ProductBuyButton>
     </ProductDrawerStyled>
   );
 };

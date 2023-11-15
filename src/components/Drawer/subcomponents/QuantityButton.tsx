@@ -33,8 +33,22 @@ const NumberInput = React.forwardRef(function CustomNumberInput(
   );
 });
 
-export default function QuantityInput() {
-  return <NumberInput aria-label="Quantity Input" min={0} defaultValue={0} />;
+type StyledInputProps = {
+  value: number;
+  onChange: (value: number) => void;
+};
+
+export default function QuantityInput({ value, onChange }: StyledInputProps) {
+  return (
+    <NumberInput
+      onChange={(event, value) => {
+        onChange(value || 0);
+      }}
+      aria-label="Quantity Input"
+      min={0}
+      defaultValue={value}
+    />
+  );
 }
 
 const StyledInputRoot = styled('div')(

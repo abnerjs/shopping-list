@@ -2,16 +2,41 @@ import { Icon } from '@iconify/react';
 import { Card, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import styled from 'styled-components';
 
+import { CartItem } from '../../../model/CartItem';
 import QuantityInput from './QuantityButton';
 
-const ProductItemDrawer = () => {
+type Props = {
+  item: CartItem;
+  cart: Array<CartItem>;
+  setCart: (value: Array<CartItem>) => void;
+};
+
+const ProductItemDrawer = ({ item, cart, setCart }: Props) => {
+  const changeQuantityHandler = (value: number) => {
+    const cartIndex = cart.findIndex(
+      (cartItem) => cartItem.product.id === item.product.id,
+    );
+
+    if (cartIndex != -1) {
+      const newCart = cart;
+      newCart[cartIndex].quantity = value;
+      setCart([...newCart]);
+    }
+  };
+
   return (
     <StyledCardController>
       <StyledCard>
         <CardMedia
           component="img"
-          sx={{ width: 104 }}
-          image="https://via.placeholder.com/150"
+          sx={{
+            width: '104px !important',
+            maxWidth: '104px !important',
+            minWidth: '104px !important',
+            marginLeft: '8px !important',
+            backgroundSize: 'contain !important',
+          }}
+          image={item.product.photo}
         />
         <StyledCardContent>
           <Typography
@@ -22,7 +47,7 @@ const ProductItemDrawer = () => {
               fontFamily: 'Montserrat',
             }}
           >
-            Xbox Series X 1TB SSD
+            {item.product.name}
           </Typography>
 
           <div className="test">
@@ -38,7 +63,7 @@ const ProductItemDrawer = () => {
             >
               Qtd:
             </Typography>
-            <QuantityInput />
+            <QuantityInput onChange={changeQuantityHandler} value={item.quantity} />
           </div>
           <Typography
             sx={{
@@ -46,14 +71,24 @@ const ProductItemDrawer = () => {
               fontWeight: 700,
               fontSize: 14,
               color: '#000',
+              whiteSpace: 'nowrap',
             }}
           >
-            R$10,00
+            {`R$ ${(~~item.product.price * item.quantity).toString()}`}
           </Typography>
         </StyledCardContent>
       </StyledCard>
       <ItemDrawerDeleteButtonController>
-        <ItemDrawerDeleteButton>
+        <ItemDrawerDeleteButton
+          onClick={() => {
+            const newCart = cart;
+            const cartIndex = newCart.findIndex(
+              (cartItem) => cartItem.product.id === item.product.id,
+            );
+            newCart.splice(cartIndex, 1);
+            setCart([...newCart]);
+          }}
+        >
           <Icon icon="fluent:dismiss-12-regular" color="#FFF" width={12} height={12} />
         </ItemDrawerDeleteButton>
       </ItemDrawerDeleteButtonController>
@@ -72,6 +107,7 @@ const StyledCard = styled(Card)(() => ({
   display: 'flex',
   width: '100%',
   height: '104px',
+  borderRadius: '8px !important',
   boxShadow: '-2px 2px 10px 0px rgba(0, 0, 0, 0.05)',
   '& .MuiPaper-root': {
     overflow: 'auto !important',
