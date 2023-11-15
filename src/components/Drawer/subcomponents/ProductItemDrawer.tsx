@@ -57,7 +57,7 @@ const ProductItemDrawer = ({ item, cart, setCart }: Props) => {
             setCart([...newCart]);
           }}
         >
-          <Icon icon="fluent:dismiss-12-regular" color="#FFF" width={12} height={12} />
+          <Icon icon="fluent:dismiss-12-regular" />
         </ItemDrawerDeleteButton>
       </ItemDrawerDeleteButtonController>
     </StyledCardController>
@@ -188,19 +188,40 @@ const ItemDrawerDeleteButtonController = styled.div(() => ({
   position: 'absolute',
   transform: 'translate(0, -50%)',
   right: '0',
+
+  '@media (max-width: 768px)': {
+    right: '20px',
+    width: '32px',
+    height: '32px',
+    transform: 'unset',
+  },
 }));
 
 const ItemDrawerDeleteButton = styled(IconButton)(() => ({
   backgroundColor: '#000 !important',
   width: '16px !important',
   height: '16px !important',
+  fontSize: '12px !important',
   padding: '0 !important',
   position: 'relative',
+  color: '#FFF !important',
   transform: 'translate(50%, -104px)',
   zIndex: 2,
   transition: 'background-color .3s ease-in-out !important',
   '&:hover': {
     backgroundColor: 'var(--error) !important',
+  },
+
+  '@media (max-width: 768px)': {
+    width: '24px !important',
+    height: '24px !important',
+    color: '#000 !important',
+    fontSize: '24px !important',
+    transform: 'translate(10px, -230px)',
+    backgroundColor: 'transparent !important',
+    '&:hover': {
+      backgroundColor: 'transparent !important',
+    },
   },
 }));
 
