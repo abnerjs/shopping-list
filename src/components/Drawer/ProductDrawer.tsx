@@ -75,7 +75,7 @@ const ProductDrawer = ({ drawerOpened, setDrawerOpened, cart, setCart }: Props) 
           justifyContent: 'center',
           height: '60%',
           color: '#FFFFFF30',
-          fontSize: '4.8rem',
+          fontSize: '3.8rem',
           padding: '0 48px 0 32px',
           fontWeight: 700,
           lineHeight: '4.8rem',
