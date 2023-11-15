@@ -94,6 +94,11 @@ const ProductsTotalPrice = styled.div(() => ({
 
 const CloseDrawerButton = styled(IconButton)(() => ({
   backgroundColor: '#000 !important',
+  transition: 'all .6s ease-in-out !important',
+  '&:hover': {
+    backgroundColor: '#000000BB !important',
+    boxShadow: '0 0 12px rgba(0, 0, 0, 0.25)',
+  },
 }));
 
 export default ProductDrawer;

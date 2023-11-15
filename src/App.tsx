@@ -1,16 +1,28 @@
 import './App.css';
 
-import { Grid } from '@mui/material';
-import { useState } from 'react';
+import { Grid, Skeleton } from '@mui/material';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import ProductDrawer from './components/Drawer/ProductDrawer';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import ProductItem from './components/ProductItem';
+import { ProductList } from './model/product';
+import API_URL from './repository/products';
 
 function App() {
   const [drawerOpened, setDrawerOpened] = useState(false);
+  const [products, setProducts] = useState<ProductList | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    API_URL.get('/products').then((response) => {
+      setProducts(response.data);
+      setLoading(false);
+    });
+  }, []);
 
   return (
     <MainContainer>
@@ -22,11 +34,23 @@ function App() {
       />
 
       <ProductsGrid container>
-        {Array.from(Array(8).keys()).map((item) => (
-          <ItemGrid item xs={3} key={item}>
-            <ProductItem />
-          </ItemGrid>
-        ))}
+        {!loading &&
+          products?.products.map((item) => (
+            <ItemGrid item xs={3} key={item.id}>
+              <ProductItem item={item} />
+            </ItemGrid>
+          ))}
+        {loading &&
+          Array.from(Array(8).keys()).map((item) => (
+            <ItemGrid item xs={3} key={item}>
+              <Skeleton
+                sx={{ borderRadius: 2 }}
+                variant="rectangular"
+                width={280}
+                height={320}
+              />
+            </ItemGrid>
+          ))}
       </ProductsGrid>
 
       <ProductDrawer drawerOpened={drawerOpened} setDrawerOpened={setDrawerOpened} />
@@ -35,6 +59,8 @@ function App() {
     </MainContainer>
   );
 }
+
+App.displayName = 'App';
 
 const MainContainer = styled.div(() => ({
   display: 'flex',
@@ -57,8 +83,8 @@ const ProductsGrid = styled(Grid)(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   margin: '72px 0 32px 0 !important',
-  maxWidth: 'calc(100% - 280px) !important',
-  maxHeight: 'calc(100% - 104px) !important',
+  padding: '20px 90px',
+  gap: '24px 0',
   overflowY: 'auto',
   '&::-webkit-scrollbar': {
     width: '8px !important',
@@ -74,7 +100,6 @@ const ItemGrid = styled(Grid)(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  padding: '24px 16px !important',
 }));
 
 export default App;

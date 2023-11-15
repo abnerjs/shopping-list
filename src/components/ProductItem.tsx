@@ -9,10 +9,16 @@ import {
 } from '@mui/material';
 import styled from 'styled-components';
 
-const ProductItem = () => {
+import { Product } from '../model/product';
+
+type Props = {
+  item: Product;
+};
+
+const ProductItem = ({ item }: Props) => {
   return (
     <ProductCard>
-      <CardMedia sx={{ height: 140 }} image="https://placehold.co/600x400.jpg" />
+      <CardMedia sx={{ height: 180 }} image={item.photo} />
       <StyledCardContent>
         <CardHeader>
           <Typography
@@ -22,7 +28,7 @@ const ProductItem = () => {
               fontSize: 16,
             }}
           >
-            Apple Watch Ultima Geracao
+            {item.name}
           </Typography>
           <CardPrice>
             <Typography
@@ -35,7 +41,7 @@ const ProductItem = () => {
                 fontWeight: 700,
               }}
             >
-              R$ 1.999
+              {`R$ ${(~~item.price).toString()}`}
             </Typography>
           </CardPrice>
         </CardHeader>

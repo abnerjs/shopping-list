@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import styled from 'styled-components';
 
-import CartButton from './CartButton';
+import CartButton from './subcomponents/CartButton';
 
 type Props = {
   title: string;
