@@ -40,6 +40,12 @@ const NavbarContainer = styled.nav(() => ({
   padding: '0 64px',
   position: 'absolute',
   top: '0',
+
+  '@media (max-width: 768px)': {
+    padding: '0 32px',
+    width: 'calc(100% - 64px)',
+    height: '56px',
+  },
 }));
 
 const NavbarTitle = styled.span(() => ({

@@ -93,6 +93,14 @@ const ProductDrawerStyled = styled(Drawer)(() => ({
     width: '480px !important',
     backgroundColor: 'var(--primary) !important',
     overflow: 'hidden !important',
+
+    '@media (max-width: 768px)': {
+      width: 'calc(100% - 34px) !important',
+    },
+  },
+
+  '@media (max-width: 768px)': {
+    width: 'calc(100% - 34px) !important',
   },
 }));
 
@@ -117,8 +125,21 @@ const ProductDrawerItemList = styled.div(() => ({
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
-  padding: '8px 32px',
+  padding: '8px 20px 8px 32px',
   overflowY: 'auto',
+  marginRight: '12px',
+
+  '&::-webkit-scrollbar': {
+    width: '8px',
+    padding: '0 8px',
+    position: 'absolute',
+    right: '8px',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#FFFFFFA0',
+    borderRadius: '4px',
+    width: '8px',
+  },
 }));
 
 const ProductsTotalPrice = styled.div(() => ({
@@ -133,6 +154,10 @@ const ProductsTotalPrice = styled.div(() => ({
   color: '#FFF',
   fontWeight: 700,
   fontSize: '1.2rem',
+
+  '@media (max-width: 768px)': {
+    fontSize: '1.5 rem',
+  },
 }));
 
 const CloseDrawerButton = styled(IconButton)(() => ({

@@ -27,55 +27,23 @@ const ProductItemDrawer = ({ item, cart, setCart }: Props) => {
   return (
     <StyledCardController>
       <StyledCard>
-        <CardMedia
+        <StyledCardMedia
+          style={{ objectFit: 'contain' }}
           component="img"
-          sx={{
-            width: '104px !important',
-            maxWidth: '104px !important',
-            minWidth: '104px !important',
-            marginLeft: '8px !important',
-            backgroundSize: 'contain !important',
-          }}
           image={item.product.photo}
         />
         <StyledCardContent>
-          <Typography
-            sx={{
-              fontSize: 13,
-              color: '#2C2C2C',
-              width: '40%',
-              fontFamily: 'Montserrat',
-            }}
-          >
-            {item.product.name}
-          </Typography>
+          <StyledCardTitle>{item.product.name}</StyledCardTitle>
 
-          <div className="test">
-            <Typography
-              sx={{
-                color: '#333',
-                fontSize: 8,
-                fontWeight: 400,
-                fontFamily: 'Montserrat',
-                position: 'absolute',
-                transform: 'translate(0, -120%)',
-              }}
-            >
-              Qtd:
-            </Typography>
-            <QuantityInput onChange={changeQuantityHandler} value={item.quantity} />
-          </div>
-          <Typography
-            sx={{
-              fontFamily: 'Montserrat',
-              fontWeight: 700,
-              fontSize: 14,
-              color: '#000',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {`R$ ${(~~item.product.price * item.quantity).toString()}`}
-          </Typography>
+          <BottomTextController>
+            <div className="quantityBox">
+              <OcasionalText>Qtd:</OcasionalText>
+              <QuantityInput onChange={changeQuantityHandler} value={item.quantity} />
+            </div>
+            <PriceText>
+              {`R$ ${(~~item.product.price * item.quantity).toString()}`}
+            </PriceText>
+          </BottomTextController>
         </StyledCardContent>
       </StyledCard>
       <ItemDrawerDeleteButtonController>
@@ -101,6 +69,10 @@ const StyledCardController = styled.div(() => ({
   width: '100%',
   height: '104px',
   marginBottom: '24px',
+
+  '@media (max-width: 768px)': {
+    height: '240px',
+  },
 }));
 
 const StyledCard = styled(Card)(() => ({
@@ -112,15 +84,98 @@ const StyledCard = styled(Card)(() => ({
   '& .MuiPaper-root': {
     overflow: 'auto !important',
   },
+
+  '@media (max-width: 768px)': {
+    height: '240px',
+    flexDirection: 'column',
+  },
+}));
+
+const StyledCardMedia = styled(CardMedia)(() => ({
+  width: '104px !important',
+  maxHeight: '104px !important',
+  objectFit: 'contain',
+  backgroundSize: 'contain !important',
+  marginLeft: '8px !important',
+
+  '@media (max-width: 768px)': {
+    width: '100% !important',
+    maxHeight: 'unset !important',
+    height: '60%',
+    marginLeft: '0 !important',
+  },
 }));
 
 const StyledCardContent = styled(CardContent)(() => ({
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center',
   width: '100%',
-  padding: '0 32px 0 20px !important',
+  alignItems: 'center',
+  padding: '0 16px 0 12px !important',
   gap: '24px',
+
+  '@media (max-width: 768px)': {
+    flexDirection: 'column',
+    padding: '0 16px 0 16px !important',
+    width: 'unset',
+  },
+}));
+
+const StyledCardTitle = styled(Typography)(() => ({
+  margin: '0',
+  fontSize: 13,
+  color: '#2C2C2C',
+  width: '40%',
+  fontFamily: 'Montserrat !important',
+
+  '@media (max-width: 768px)': {
+    width: '100%',
+    minWidth: '100%',
+  },
+}));
+
+const OcasionalText = styled(Typography)(() => ({
+  color: '#333',
+  fontSize: '8px !important',
+  fontWeight: '400 !important',
+  fontFamily: 'Montserrat !important',
+  position: 'absolute',
+  transform: 'translate(0, -120%)',
+
+  '@media (max-width: 768px)': {
+    display: 'none',
+  },
+}));
+
+const BottomTextController = styled.div(() => ({
+  display: 'flex',
+  gap: '8px',
+  alignItems: 'center',
+
+  '@media (max-width: 768px)': {
+    width: '100%',
+    justifyContent: 'space-between',
+    marginBottom: '16px',
+  },
+}));
+
+const PriceText = styled(Typography)(() => ({
+  fontFamily: 'Montserrat !important',
+  fontWeight: '700 !important',
+  fontSize: '14px !important',
+  color: '#FFF !important',
+  backgroundColor: '#373737 !important',
+  padding: '4px 8px !important',
+  borderRadius: '4px !important',
+  whiteSpace: 'nowrap',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+
+  '@media (max-width: 768px)': {
+    fontSize: '18px !important',
+    padding: '4px 8px !important',
+  },
 }));
 
 const ItemDrawerDeleteButtonController = styled.div(() => ({

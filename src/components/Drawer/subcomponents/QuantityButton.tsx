@@ -44,9 +44,9 @@ export default function QuantityInput({ value, onChange }: StyledInputProps) {
       onChange={(event, value) => {
         onChange(value || 0);
       }}
+      value={value}
       aria-label="Quantity Input"
       min={0}
-      defaultValue={value}
     />
   );
 }
@@ -59,6 +59,11 @@ const StyledInputRoot = styled('div')(
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
 `,
 );
 
@@ -81,6 +86,10 @@ const StyledInput = styled('input')(
 
   &:focus-visible {
     outline: 0;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
   }
 `,
 );

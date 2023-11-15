@@ -13,6 +13,7 @@ const ProductBuyButtonStyled = styled(Button)(() => ({
   backgroundColor: '#000 !important',
   borderRadius: '0 !important',
   height: '72px !important',
+  minHeight: '72px !important',
   fontWeight: 700,
   fontSize: '1.2rem !important',
   transition: 'background-color .6s ease-in-out !important',
