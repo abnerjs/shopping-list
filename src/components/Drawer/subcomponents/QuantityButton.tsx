@@ -46,7 +46,7 @@ export default function QuantityInput({ value, onChange }: StyledInputProps) {
       }}
       value={value}
       aria-label="Quantity Input"
-      min={0}
+      min={1}
     />
   );
 }
