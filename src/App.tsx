@@ -55,13 +55,13 @@ function App() {
       <ProductsGrid container>
         {!loading &&
           products?.products.map((item) => (
-            <ItemGrid item xs={3} key={item.id}>
+            <ItemGrid item xs={12} sm={3} key={item.id}>
               <ProductItem onBuy={addToCartHandler} item={item} />
             </ItemGrid>
           ))}
         {loading &&
           Array.from(Array(8).keys()).map((item) => (
-            <ItemGrid item xs={3} key={item}>
+            <ItemGrid item xs={12} sm={3} key={item}>
               <Skeleton
                 sx={{ borderRadius: 2 }}
                 variant="rectangular"
