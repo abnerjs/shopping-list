@@ -10,7 +10,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProductItem from './components/ProductItem';
 import { CartItem } from './model/CartItem';
 import { Product, ProductList } from './model/product';
-import API_URL, { obterProdutosPorAPI } from './repository/products';
+import API_URL from './repository/products';
 
 function App() {
   const [drawerOpened, setDrawerOpened] = useState(false);
