@@ -39,5 +39,5 @@ Ao finalizar, faça o deploy no lugar que te for confortável (exemplo: Vercel, 
 
 ## Screenshots
 
-<img src="/assets/main.jpeg" alt="Main" style="width:200px;"/>
-<img src="/assets/cart.jpeg" alt="Cart" style="width:200px;"/>
+<img src="/resources/main.jpeg" alt="Main" style="width:200px;"/>
+<img src="/resources/cart.jpeg" alt="Cart" style="width:200px;"/>
