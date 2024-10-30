@@ -46,8 +46,8 @@ function App() {
   return (
     <MainContainer>
       <Navbar
-        title="MKS"
-        subtitle="Sistemas"
+        title="AJS"
+        subtitle="Shopping"
         setDrawerOpened={setDrawerOpened}
         productsCount={cart?.length}
       />

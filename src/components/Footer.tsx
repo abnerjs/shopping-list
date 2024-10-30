@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Footer = () => {
   return (
     <FooterDiv>
-      <span>MKS sistemas © Todos os direitos reservados</span>
+      <span>AJS Shopping © Todos os direitos reservados</span>
     </FooterDiv>
   );
 };
